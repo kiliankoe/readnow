@@ -25,7 +25,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let dict = match plist {
         Plist::Dictionary(dict) => Some(dict),
         _ => None,
-    }.unwrap();
+    }.ok_or("Failed to read Bookmarks.plist.")?;
 
     let mut reading_list: Option<plist::Plist> = None;
 
@@ -37,7 +37,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
         }
     }
 
-    let reading_list = reading_list.unwrap();
+    let reading_list = reading_list.ok_or("Failed to find reading list.")?;
     let reading_list = reading_list.as_array().unwrap();
 
     let random_page = &reading_list[rand::thread_rng().gen_range(0, reading_list.len())];
