@@ -1,4 +1,4 @@
-class Wikitranslate < Formula
+class Readnow < Formula
     desc "Open a random link from your Safari reading list"
     homepage "https://github.com/kiliankoe/readnow"
     url "https://github.com/kiliankoe/readnow/archive/0.1.0.tar.gz"
