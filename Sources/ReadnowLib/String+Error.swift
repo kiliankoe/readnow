@@ -1,3 +1,1 @@
-extension String: Error {
-    
-}
+extension String: Error {}
