@@ -7,3 +7,4 @@ authors = ["Kilian Koeltzsch <me@kilian.io>"]
 plist = "0.3.0"
 rand = "0.5.5"
 webbrowser = "0.3.1"
+dirs = "1.0.3"
