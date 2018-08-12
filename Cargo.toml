@@ -5,3 +5,5 @@ authors = ["Kilian Koeltzsch <me@kilian.io>"]
 
 [dependencies]
 plist = "0.3.0"
+rand = "0.5.5"
+webbrowser = "0.3.1"
