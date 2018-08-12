@@ -40,5 +40,9 @@ public func run() throws {
         throw "no elements found in reading list"
     }
 
-    NSWorkspace.shared.open(URL(string: randomElement.URLString)!)
+    guard let url = URL(string: randomElement.URLString) else {
+        throw "\(randomElement.URLString) is not a valid URL"
+    }
+
+    NSWorkspace.shared.open(url)
 }
