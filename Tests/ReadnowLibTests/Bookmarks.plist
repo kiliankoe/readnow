@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Children</key>
+	<array>
+		<dict>
+			<key>Children</key>
+			<array>
+				<dict>
+					<key>ReadingList</key>
+					<dict>
+						<key>DateAdded</key>
+						<date>2018-08-12T12:21:55Z</date>
+						<key>PreviewText</key>
+						<string>Welcome to the Swift community. Together we are working to build a programming language to empower everyone to turn their ideas into apps on any platform.</string>
+					</dict>
+					<key>URIDictionary</key>
+					<dict>
+						<key>title</key>
+						<string>Swift.org</string>
+					</dict>
+					<key>URLString</key>
+					<string>https://swift.org</string>
+				</dict>
+			</array>
+			<key>Title</key>
+			<string>com.apple.ReadingList</string>
+		</dict>
+	</array>
+</dict>
+</plist>

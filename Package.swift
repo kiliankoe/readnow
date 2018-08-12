@@ -20,6 +20,9 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "readnowTests",
-            dependencies: ["readnow", "ReadnowLib"]),
+            dependencies: ["readnow"]),
+        .testTarget(
+            name: "ReadnowLibTests",
+            dependencies: ["ReadnowLib"]),
     ]
 )
