@@ -1,3 +1,4 @@
-/target
-**/*.rs.bk
-*.iml
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
