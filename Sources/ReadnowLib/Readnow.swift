@@ -18,18 +18,20 @@ struct Bookmarks: Decodable {
         }
     }
 
-    init() throws {
-        guard #available(macOS 10.12, *) else {
-            throw "this tool requires macOS >=10.12"
-        }
-
-        let data = try Data(contentsOf: URL(string: "\(FileManager.default.homeDirectoryForCurrentUser)/Library/Safari/Bookmarks.plist")!)
+    init(fromPath path: URL) throws {
+        let data = try Data(contentsOf: path)
         self = try PropertyListDecoder().decode(Bookmarks.self, from: data)
     }
 }
 
 public func run() throws {
-    let bookmarks = try Bookmarks()
+    guard #available(macOS 10.12, *) else {
+        throw "this tool requires macOS >=10.12"
+    }
+
+    let plistPath = URL(string: "\(FileManager.default.homeDirectoryForCurrentUser)/Library/Safari/Bookmarks.plist")!
+    let bookmarks = try Bookmarks(fromPath: plistPath)
+
     guard let readingList = bookmarks.readingList else {
         throw "no reading list found"
     }
