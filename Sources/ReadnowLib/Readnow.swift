@@ -29,7 +29,8 @@ func randomReadingListElement() throws -> Bookmarks.Child.Item {
         throw "this tool requires macOS >=10.12"
     }
 
-    let plistPath = ProcessInfo.processInfo.environment["SAFARI_BOOKMARKS_PATH"] ?? "\(FileManager.default.homeDirectoryForCurrentUser)/Library/Safari/Bookmarks.plist"
+    let plistPath = ProcessInfo.processInfo.environment["SAFARI_BOOKMARKS_PATH"]
+        ?? "\(FileManager.default.homeDirectoryForCurrentUser)Library/Safari/Bookmarks.plist"
 
     guard let plistURL = URL(string: plistPath) else {
         throw "\(plistPath) is not a valid file URL"
