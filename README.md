@@ -12,8 +12,4 @@ Keep this up with somewhat of a routine and you'll (hopefully) be able to bring 
 
 1. This currently doesn't work (on macOS Mojave) 🤦‍♀️ 
 
-macOS doesn't allow random tools to access `~/Library/Safari` anymore. You're welcome to try and see if this works on previous versions of macOS though. As a ridiculous workaround you can copy `~/Library/Safari/Bookmarks.plist` elsewhere manually and set `SAFARI_BOOKMARKS_PATH` to point to the new location.
-
-2. The code stinks. 
-
-Yeah, I know. This was quickly hacked together without having used Rust for quite some time. I'll hopefully change that 🙈
+macOS doesn't allow random tools to access `~/Library/Safari` anymore. You're welcome to try and see if this works on previous versions of macOS though.
