@@ -12,6 +12,6 @@ do {
             """)
         NSWorkspace.shared.launchApplication("System Preferences")
     } else {
-        print("Error occured: \(e.localizedDescription)")
+        print("Error occurred: \(e.localizedDescription)")
     }
 }
