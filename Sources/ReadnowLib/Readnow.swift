@@ -8,7 +8,7 @@ struct Bookmarks: Decodable {
         let Children: [Item]?
 
         struct Item: Decodable {
-            let URLString: String
+            let URLString: String?
         }
     }
 
@@ -52,8 +52,8 @@ func randomReadingListElement() throws -> Bookmarks.Child.Item {
 public func run() throws {
     let randomElement = try randomReadingListElement()
 
-    guard let url = URL(string: randomElement.URLString) else {
-        throw "\(randomElement.URLString) is not a valid URL"
+	guard let urlStr = randomElement.URLString, let url = URL(string: urlStr) else {
+        throw "\(randomElement.URLString ?? "---") is not a valid URL"
     }
 
     NSWorkspace.shared.open(url)
