@@ -15,7 +15,9 @@ final class ReadnowLibTests: XCTestCase {
 		let fixtures = productsDirectory.appendingPathComponent("Bookmarks.plist")
 		set(environmentVariable: "SAFARI_BOOKMARKS_PATH", withValue: fixtures.absoluteString)
 
-		let randomElement = try randomReadingListElement()
+		let tool = Readnow()
+
+		let randomElement = try tool.randomReadingListElement()
 		XCTAssertEqual(randomElement.URLString, "https://swift.org")
 	}
 

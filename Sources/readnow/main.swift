@@ -1,8 +1,10 @@
 import Cocoa
 import ReadnowLib
 
+let tool = Readnow()
+
 do {
-	try run()
+	try tool.run()
 } catch let e {
 	if e.localizedDescription == "The file “Bookmarks.plist” couldn’t be opened because you don’t have permission to view it." {
 		print("""

@@ -24,39 +24,50 @@ struct Bookmarks: Decodable {
 	}
 }
 
-func randomReadingListElement() throws -> Bookmarks.Child.Item {
-	guard #available(macOS 10.12, *) else {
-		throw "this tool requires macOS >=10.12"
+public final class Readnow {
+	private let arguments: [String]
+
+	public init(arguments: [String] = CommandLine.arguments) {
+		self.arguments = arguments
 	}
 
-	let plistPath = ProcessInfo.processInfo.environment["SAFARI_BOOKMARKS_PATH"]
-		?? "\(FileManager.default.homeDirectoryForCurrentUser)Library/Safari/Bookmarks.plist"
+	func randomReadingListElement() throws -> Bookmarks.Child.Item {
+		guard #available(macOS 10.12, *) else {
+			throw "this tool requires macOS >=10.12"
+		}
 
-	guard let plistURL = URL(string: plistPath) else {
-		throw "\(plistPath) is not a valid file URL"
+		let plistPath = ProcessInfo.processInfo.environment["SAFARI_BOOKMARKS_PATH"]
+			?? "\(FileManager.default.homeDirectoryForCurrentUser)Library/Safari/Bookmarks.plist"
+
+		guard let plistURL = URL(string: plistPath) else {
+			throw "\(plistPath) is not a valid file URL"
+		}
+
+		let bookmarks = try Bookmarks(fromPath: plistURL)
+
+		guard let readingList = bookmarks.readingList else {
+			throw "no reading list found"
+		}
+
+		guard let randomElement = readingList.Children?.randomElement() else {
+			throw "no elements found in reading list"
+		}
+
+		return randomElement
 	}
 
-	let bookmarks = try Bookmarks(fromPath: plistURL)
+	public func run() throws {
+		let randomElement = try randomReadingListElement()
 
-	guard let readingList = bookmarks.readingList else {
-		throw "no reading list found"
+		guard let urlStr = randomElement.URLString, let url = URL(string: urlStr) else {
+			throw "\(randomElement.URLString ?? "---") is not a valid URL"
+		}
+
+		if !arguments.contains("--no-print") {
+			print(url)
+		} else if !arguments.contains("--print-only") {
+			NSWorkspace.shared.open(url)
+		}
 	}
-
-	guard let randomElement = readingList.Children?.randomElement() else {
-		throw "no elements found in reading list"
-	}
-
-	return randomElement
 }
 
-public func run() throws {
-	let randomElement = try randomReadingListElement()
-
-	guard let urlStr = randomElement.URLString, let url = URL(string: urlStr) else {
-		throw "\(randomElement.URLString ?? "---") is not a valid URL"
-	}
-
-	print(url)
-
-	NSWorkspace.shared.open(url)
-}
